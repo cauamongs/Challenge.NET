@@ -1,0 +1,60 @@
+﻿@model List<UsuarioModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Usuarios</h1>
+
+<div class="d-grrid gap-2 d-md-flex justify-content-md-start">
+<a class="btn btn-primary" role="button" asp-controller="Usuario" asp-action="Criar">Adiconar novo usuario</a>
+    </div>
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                Usuario
+            </th>
+            <th>
+               Email
+            </th>
+            <th>
+                CPF
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            
+        @foreach (UsuarioModel user in Model)
+        {
+            <tr>
+                <td scope="row">@user.Id</td>
+                <td>
+                    @user.Username
+                </td>
+                <td>
+                    @user.Email
+                </td>
+                <td>
+                    @user.CPF
+                </td>
+                <td>
+                        <a asp-action="Editar" asp-controller="Usuario" asp-route-id="@user.Id" class="btn btn-primary">Editar</a>
+
+                        <a asp-action="Apagar" asp-controller="Usuario" asp-route-id="@user.Id" class="btn btn-danger">Deletar</a>
+                </td>
+            </tr>
+        }
+        }
+        
+    </tbody>
+</table>
+
+

@@ -1,0 +1,78 @@
+﻿@model List<PreferenciaViagemModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Preferencias de Viagens</h1>
+
+<div class="d-grrid gap-2 d-md-flex justify-content-md-start">
+    <a class="btn btn-primary" role="button" asp-controller="PreferenciaViagem" asp-action="Criar">Adiconar nova preferencia de viagem</a>
+</div>
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                Tipo de culinária
+            </th>
+            <th>
+                Restrições alimentares
+            </th>
+            <th>
+               Tipo de transporte
+            </th>
+            <th>
+                Tipo de hospedagem
+            </th>
+            <th>
+                Viaja sozinho
+            </th>
+            <th>
+                Usuário ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {  
+
+            @foreach (PreferenciaViagemModel preferencia in Model)
+            {
+                <tr>
+                    <td scope="row">@preferencia.Id</td>
+                    <td>
+                        @preferencia.TipoCulinaria
+                    </td>
+                    <td>
+                        @preferencia.RestricoesAlimentares
+                    </td>
+                    <td>
+                        @preferencia.TipoTransporte
+                    </td>
+                    <td>
+                        @preferencia.TipoHospedagem
+                    </td>
+                    <td>
+                        @preferencia.ViajaSozinho
+                    </td>
+                    <td>
+                        @preferencia.UsuarioId 
+                    </td>
+                    <td>
+                        <a asp-action="Editar" asp-controller="PreferenciaViagem" asp-route-id="@preferencia.Id" class="btn btn-primary">Editar</a>
+
+                        <a asp-action="Apagar" asp-controller="PreferenciaViagem" asp-route-id="@preferencia.Id" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+

@@ -1,0 +1,61 @@
+﻿@model Challenge.ViewModels.PreferenciaViagemViewModel
+
+@{
+    ViewData["Title"] = "Editar preferência";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar preferência de viagem dos usuários</h1>
+</div>
+
+<form asp-controller="PreferenciaViagem" asp-action="Atualizar" method="post">
+    <input type="hidden" asp-for="PreferenciaViagem.Id" />
+    
+    <div class="form-group">
+        <label for="TipoCulinaria">Tipo de Culinária</label>
+        <input type="text" asp-for="PreferenciaViagem.TipoCulinaria" class="form-control" placeholder="Digite o seu tipo de culinária">
+        <span asp-validation-for="PreferenciaViagem.TipoCulinaria" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="RestricoesAlimentares">Restrições alimentares</label>
+        <input type="text" asp-for="PreferenciaViagem.RestricoesAlimentares" class="form-control" placeholder="Digite a sua restrição alimentar">
+        <span asp-validation-for="PreferenciaViagem.RestricoesAlimentares" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="TipoTransporte">Tipo de transporte</label>
+        <input type="text" asp-for="PreferenciaViagem.TipoTransporte" class="form-control" placeholder="Digite o tipo de transporte">
+        <span asp-validation-for="PreferenciaViagem.TipoTransporte" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="TipoHospedagem">Tipo de hospedagem</label>
+        <input type="text" asp-for="PreferenciaViagem.TipoHospedagem" class="form-control" placeholder="Digite o tipo de hospedagem">
+        <span asp-validation-for="PreferenciaViagem.TipoHospedagem" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="ViajaSozinho">Viaja Sozinho</label>
+        <input type="text" asp-for="PreferenciaViagem.ViajaSozinho" class="form-control" placeholder="Digite se você viaja sozinho">
+        <span asp-validation-for="PreferenciaViagem.ViajaSozinho" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="UsuarioId">Usuário</label>
+        <select asp-for="PreferenciaViagem.UsuarioId" class="form-control">
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option value="@usuario.Id" >@usuario.Username</option>
+            }
+        </select>
+        <span asp-validation-for="PreferenciaViagem.UsuarioId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Salvar</button>
+    <a class="btn btn-secondary w-100" asp-controller="PreferenciaViagem" asp-action="Index" role="button">Voltar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

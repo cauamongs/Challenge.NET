@@ -1,0 +1,55 @@
+﻿@model Challenge.ViewModels.EnderecoViewModel
+
+@{
+    ViewData["Title"] = "Editar endereco";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar endereco dos usuários</h1>
+</div>
+
+<form asp-controller="Endereco" asp-action="Atualizar" method="post">
+    <input type="hidden" asp-for="Endereco.Id" />
+
+    <div class="form-group">
+        <label for="Cep">CEP</label>
+        <input type="text" asp-for="Endereco.Cep" class="form-control" placeholder="Digite o seu CEP">
+        <span asp-validation-for="Endereco.Cep" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Logradouro">Logradouro</label>
+        <input type="text" asp-for="Endereco.Logradouro" class="form-control" placeholder="Digite o seu logradouro">
+        <span asp-validation-for="Endereco.Logradouro" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Numero">Numero</label>
+        <input type="text" asp-for="Endereco.Numero" class="form-control" placeholder="Digite o número">
+        <span asp-validation-for="Endereco.Numero" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Complemento">Complemento</label>
+        <input type="text" asp-for="Endereco.Complemento" class="form-control" placeholder="Digite o tipo de hospedagem">
+        <span asp-validation-for="Endereco.Complemento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="UsuarioId">Usuário</label>
+        <select asp-for="Endereco.UsuarioId" class="form-control">
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option value="@usuario.Id">@usuario.Username</option>
+            }
+        </select>
+        <span asp-validation-for="Endereco.UsuarioId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Salvar</button>
+    <a class="btn btn-secondary w-100" asp-controller="Endereco" asp-action="Index" role="button">Voltar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

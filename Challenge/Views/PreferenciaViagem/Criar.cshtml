@@ -1,0 +1,54 @@
+﻿@model Challenge.ViewModels.PreferenciaViagemViewModel
+
+@{
+    ViewData["Title"] = "Criar preferência";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar preferência de viagem dos usuários</h1>
+</div>
+
+<form asp-controller="PreferenciaViagem" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label for="TipoCulinaria">Tipo de Culinária</label>
+        <input type="text" asp-for="PreferenciaViagem.TipoCulinaria" class="form-control" placeholder="Digite o seu tipo de culinária">
+    </div>
+
+    <div class="form-group">
+        <label for="RestricoesAlimentares">Restrições alimentares</label>
+        <input type="text" asp-for="PreferenciaViagem.RestricoesAlimentares" class="form-control" placeholder="Digite a sua restrição alimentar">
+    </div>
+
+    <div class="form-group">
+        <label for="TipoTransporte">Tipo de transporte</label>
+        <input type="text" asp-for="PreferenciaViagem.TipoTransporte" class="form-control" placeholder="Digite o tipo de transporte">
+    </div>
+
+    <div class="form-group">
+        <label for="TipoHospedagem">Tipo de hospedagem</label>
+        <input type="text" asp-for="PreferenciaViagem.TipoHospedagem" class="form-control" placeholder="Digite o tipo de hospedagem">
+    </div>
+
+    <div class="form-group">
+        <label for="ViajaSozinho">Viaja Sozinho</label>
+        <input type="text" asp-for="PreferenciaViagem.ViajaSozinho" class="form-control" placeholder="Digite se você viaja sozinho">
+    </div>
+
+    <div class="form-group">
+        <label for="UsuarioId">Usuário</label>
+        <select asp-for="PreferenciaViagem.UsuarioId" class="form-control">
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option value="@usuario.Id">@usuario.Username</option>
+            }
+        </select>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary w-100" > Adicionar</button>
+
+    <div class="form-group" style="margin-bottom: 15px;"></div>
+
+    <a class="btn btn-secondary w-100" asp-controller="PreferenciaViagem" asp-action="Index" role="button">Voltar</a>
+</form>

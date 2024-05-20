@@ -1,0 +1,70 @@
+﻿@model List<EnderecoModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Endereço de usuários</h1>
+
+<div class="d-grrid gap-2 d-md-flex justify-content-md-start">
+    <a class="btn btn-primary" role="button" asp-controller="Endereco" asp-action="Criar">Adiconar novo endereço</a>
+</div>
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                CEP
+            <th>
+                Logradouro
+            </th>
+            <th>
+                Número
+            <th>
+                Complemento
+            </th>
+            <th>
+                Usuário ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+
+            @foreach (EnderecoModel endereco in Model)
+            {
+                <tr>
+                    <td scope="row">@endereco.Id</td>
+                    <td>
+                        @endereco.Cep
+                    </td>
+                    <td>
+                        @endereco.Logradouro
+                    </td>
+                    <td>
+                        @endereco.Numero
+                    </td>
+                    <td>
+                        @endereco.Complemento
+                    </td>
+                    <td>
+                        @endereco.UsuarioId
+                    </td>
+                    <td>
+                        <a asp-action="Editar" asp-controller="Endereco" asp-route-id="@endereco.Id" class="btn btn-primary">Editar</a>
+
+                        <a asp-action="Apagar" asp-controller="Endereco" asp-route-id="@endereco.Id" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+
